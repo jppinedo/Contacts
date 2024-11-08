@@ -1,0 +1,91 @@
+body {
+    background-color: #222222;
+    opacity: 1;
+    background-image: linear-gradient(-45deg, #222222, #222222 50%, #000000 50%, #000000);
+    background-size: 37px 37px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.content-card {
+    max-width: 25rem;
+    background-color: #fff;
+    margin: 4rem auto;
+    padding: 2rem;
+    font-family: "Delius", cursive;
+    font-weight: 400;
+    box-shadow: -1rem -1rem #b6b6b6;
+}
+
+h1 {
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: #ec238e;
+    font-size: 3rem;
+    margin-top: 0;
+    text-align: center;
+}
+
+h2 {
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: #000;
+    font-size: 2rem;
+    margin-top: 0;
+    text-align: center;
+}
+
+#end-card {
+    text-align: center;
+}
+
+#end-card h1, #end-card h2 {
+    margin-bottom: 0;
+}
+
+#end-card a {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    font-size: 2rem;
+    margin-top: 2rem;
+    padding: 0.5rem 2rem;
+    display: inline-block;
+}
+
+table {
+    color: #666;
+    background: #eaebec;
+    border: #ccc 1px solid;
+    margin: 2rem 0;
+    width: 100%;
+  }
+  
+table th {
+    position: sticky;
+    top:0;
+    padding: 15px 35px;
+    border-left:1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    background: #ededed;
+}
+
+table tr {
+    text-align: center;
+    padding-left: 20px;
+}
+
+
+table td {
+    padding: 15px 35px;
+    background: #fafafa;
+    border-left: 1px solid #f1efef;
+}
+
+table td:first-child {
+    border-left: 0;
+}

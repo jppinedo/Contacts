@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Juan Pablo Pinedo">
+  <title>Contacts</title>
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Delius&family=Pacifico&display=swap" rel="stylesheet">
+
+  <script type="text/javascript">
+
+    window.onload = (event) => {
+      // harcoded list of contact names
+      const contactsArr = ['Arnold', 'Sly', 'Dwayne', 'Vin', 'JCVD', 'Steven'];
+
+      // set default state of the game
+      let playing = true;
+      // set default user input value
+      let userInput = 'y';
+      // set the table content as empty
+      let tableContent = '';
+
+      // loop the contact list, and add the HTML formatting
+      contactsArr.forEach((name, index) => {
+        // add to the table variable for each name
+        tableContent += `<tr><td>${index}</td><td>${name}</td></tr>`;
+      });
+      // add the generated HTML to the table in the document
+      document.getElementById('table-body').innerHTML = tableContent;
+
+      // wait a bit before showing the prompts
+      setTimeout(() => {
+
+        // Loop choices only if playing is true
+        while(playing) {
+
+          // Check if input is an entry number
+          if(!Number.isNaN(parseInt(userInput))) {
+            // store name of contact
+            let name = contactsArr[parseInt(userInput)];
+
+            // if name exist
+            if(name) {
+              // update user input and show the name of the contact
+              userInput = prompt(`Displaying ${name}.\nDo you want to make another selection y/n?`);
+
+            // if name doesn't exist
+            } else {
+              // update user input and show prompt with options to continue or exit (y/n)
+              userInput = prompt('That Entry is not in the Database.\nDo you want to make another selection y/n?');
+            }
+
+          // (input is not a number) Check if input is 'y'
+          } else if(userInput === 'y') {
+            // show the defaut message
+            userInput = prompt('Entry Number');
+
+          // (input is not a number, and also not 'y')
+          } else {
+            // update to continue or finish the loop
+            playing = userInput !== 'n'; // every value will continue the loop besides 'n'
+            // at this point the value of userInput is nothing valid, so it is set back to the default 'y'
+            userInput = 'y';
+          }
+        }
+        
+        // The loop is over, so the game must be over
+        // Redirect user to the end page
+        window.location.href = 'html/end.html';
+
+      }, 1000); // allow 1 second to ensure the table is loaded in the screen
+      
+    }
+    
+  </script>
+
+</head>
+<body>
+  <div class="main-container">
+    <div class="content-card">
+      <h1>Contact List</h1>
+      <table cellpadding="0" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Slot #</th>
+            <th>Number</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- table content from contacts array -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
