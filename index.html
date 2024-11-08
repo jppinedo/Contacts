@@ -15,12 +15,9 @@
       // harcoded list of contact names
       const contactsArr = ['Arnold', 'Sly', 'Dwayne', 'Vin', 'JCVD', 'Steven'];
 
-      // set default state of the game
-      let playing = true;
-      // set default user input value
-      let userInput = 'y';
-      // set the table content as empty
-      let tableContent = '';
+      let playing = true; // set default state of the game
+      let userInput = 'y'; // set default user input value
+      let tableContent = ''; // set the table content as empty
 
       // loop the contact list, and add the HTML formatting
       contactsArr.forEach((name, index) => {
@@ -30,39 +27,43 @@
       // add the generated HTML to the table in the document
       document.getElementById('table-body').innerHTML = tableContent;
 
-      // wait a bit before showing the prompts
-      setTimeout(() => {
+      setTimeout(() => { // wait a bit before showing the prompts
 
-        // Loop choices only if playing is true
-        while(playing) {
+        
+        while(playing) { // Loop choices only if playing is true
+          
+          let newInput; // new input values will be stored here first
 
-          // Check if input is an entry number
-          if(!Number.isNaN(parseInt(userInput))) {
-            // store name of contact
-            let name = contactsArr[parseInt(userInput)];
+          if(!Number.isNaN(parseInt(userInput))) { // Check if input is an entry number
+            let name = contactsArr[parseInt(userInput)]; // store name of contact
 
-            // if name exist
-            if(name) {
+            if(name) { // if name exist
               // update user input and show the name of the contact
-              userInput = prompt(`Displaying ${name}.\nDo you want to make another selection y/n?`);
+              newInput = prompt(`Displaying ${name}.\nDo you want to make another selection y/n?`);
 
-            // if name doesn't exist
-            } else {
+            } else { // if name doesn't exist
               // update user input and show prompt with options to continue or exit (y/n)
-              userInput = prompt('That Entry is not in the Database.\nDo you want to make another selection y/n?');
+              newInput = prompt('That Entry is not in the Database.\nDo you want to make another selection y/n?');
             }
 
-          // (input is not a number) Check if input is 'y'
-          } else if(userInput === 'y') {
-            // show the defaut message
-            userInput = prompt('Entry Number');
+            // make sure the new input is 'y' or 'n' to update and proceed
+            userInput = newInput === 'y' || newInput === 'n' ? newInput : userInput;
 
-          // (input is not a number, and also not 'y')
-          } else {
-            // update to continue or finish the loop
-            playing = userInput !== 'n'; // every value will continue the loop besides 'n'
-            // at this point the value of userInput is nothing valid, so it is set back to the default 'y'
-            userInput = 'y';
+          } else { // input is not a number
+
+            if(userInput === 'y') { // Check if input is 'y'
+              // show the defaut message and update new input value
+              newInput = prompt('Entry Number'); 
+              // make sure the input is a number in order to update and proceed
+              userInput = !Number.isNaN(parseInt(newInput)) ? newInput : userInput;
+
+            } else { // input is not 'y'
+              // update to continue or finish the loop
+              playing = userInput !== 'n';
+              // userInput is not valid, set it back to the default 'y'
+              userInput = 'y';
+            }
+            
           }
         }
         
